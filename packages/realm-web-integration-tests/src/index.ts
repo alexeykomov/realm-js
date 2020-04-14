@@ -6,5 +6,6 @@ const mochaClient = new MochaRemoteClient({
         require("./credentials.test");
         require("./functions.test");
         require("./services.test");
+        require("./api-key-auth-provider.test");
     },
 });

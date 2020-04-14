@@ -4,6 +4,7 @@ import { create as createFunctionsFactory } from "./FunctionsFactory";
 import { User, UserState, UserControlHandle } from "./User";
 import { AuthenticatedTransport, Transport, BaseTransport } from "./transports";
 import { create as createServicesFactory } from "./services";
+import { create as createAuthProviders } from "./auth-providers";
 
 /**
  * Configuration to pass as an argument when constructing an app.
@@ -23,6 +24,9 @@ export class App<FunctionsFactoryType extends Realm.FunctionsFactory>
 
     /** @inheritdoc */
     public readonly services: Realm.Services;
+
+    /** @inheritdoc */
+    public readonly auth: Realm.AuthProviders;
 
     /** @inheritdoc */
     public readonly id: string;
@@ -88,6 +92,8 @@ export class App<FunctionsFactoryType extends Realm.FunctionsFactory>
         );
         // Construct the services factory
         this.services = createServicesFactory(this.appTransport);
+        // Construct the auth providers
+        this.auth = createAuthProviders(this.appTransport);
     }
 
     /**

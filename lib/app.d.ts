@@ -23,6 +23,10 @@
 /// <reference path="auth-providers.d.ts" />
 
 declare namespace Realm {
+    // See https://stackoverflow.com/a/51114250 on why we're importing the BSON types like this
+    type ObjectId = import("bson").ObjectId;
+    type Binary = import("bson").Binary;
+
     /**
      * The constructor of MongoDB Realm App.
      */
@@ -52,7 +56,7 @@ declare namespace Realm {
         services: Realm.Services;
 
         /**
-         * 
+         * Perform operations on an apps authentication providers.
          */
         auth: Realm.AuthProviders;
 

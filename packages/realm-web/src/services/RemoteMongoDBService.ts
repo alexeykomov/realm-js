@@ -1,6 +1,6 @@
 import { Transport } from "../transports";
 import { create as createFunctionsFactory } from "../FunctionsFactory";
-import { deserialize, serialize } from "./utils";
+import { deserialize, serialize } from "../utils/ejson";
 
 /**
  * A remote collection of documents.

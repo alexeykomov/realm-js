@@ -1,6 +1,6 @@
 import { Transport } from "../transports";
 import { create as createFunctionsFactory } from "../FunctionsFactory";
-import { deserialize } from "./utils";
+import { deserialize } from "../utils/ejson";
 
 // @see https://github.com/mongodb/stitch-js-sdk/blob/master/packages/core/services/http/src/internal/CoreHttpServiceClient.ts
 
