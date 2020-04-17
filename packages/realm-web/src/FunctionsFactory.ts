@@ -1,4 +1,5 @@
 import { Transport } from "./transports/Transport";
+import { deserialize } from "./utils/ejson";
 
 /**
  * A list of names that functions cannot have to be callable through the functions proxy.
@@ -75,7 +76,8 @@ export class FunctionsFactory {
         this.transport = transport;
         this.serviceName = config.serviceName;
         this.argsTransformation = config.argsTransformation || cleanArgs;
-        this.responseTransformation = config.responseTransformation;
+        this.responseTransformation =
+            config.responseTransformation || deserialize;
     }
 
     /**
