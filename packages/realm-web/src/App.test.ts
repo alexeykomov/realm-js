@@ -85,7 +85,10 @@ describe("App", () => {
                 method: "POST",
                 url:
                     "http://localhost:1337/api/client/v2.0/app/default-app-id/auth/providers/local-userpass/login",
-                body: { username: "gilfoil@testing.mongodb.com", password: "v3ry-s3cret" },
+                body: {
+                    username: "gilfoil@testing.mongodb.com",
+                    password: "v3ry-s3cret",
+                },
             },
             {
                 method: "GET",
@@ -219,7 +222,8 @@ describe("App", () => {
 
     it("expose a collection of service factories", () => {
         const transport = new MockNetworkTransport([]);
-        const app = new App("default-app-id", {
+        const app = new App({
+            id: "default-app-id",
             transport,
             baseUrl: "http://localhost:1337",
         });

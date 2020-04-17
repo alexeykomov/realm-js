@@ -22,6 +22,14 @@ describe("Realm Web", () => {
             );
         });
 
+        it("expose the api key credentials", () => {
+            expect(typeof Realm.Credentials.apiKey).to.equal("function");
+            const credentials = Realm.Credentials.apiKey("deadbeef");
+            expect(credentials).to.be.instanceOf(
+                Realm.Credentials.ApiKeyCredentials,
+            );
+        });
+
         it("expose the email/password credentials", () => {
             expect(typeof Realm.Credentials.emailPassword).to.equal("function");
             const credentials = Realm.Credentials.emailPassword(
