@@ -1,9 +1,4 @@
-import {
-    Transport,
-    Request,
-    PrefixedTransport,
-    BaseTransport,
-} from "../transports";
+import { Transport, PrefixedTransport, BaseTransport } from "../transports";
 import { MockNetworkTransport } from "./MockNetworkTransport";
 
 /**
