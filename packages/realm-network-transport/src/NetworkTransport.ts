@@ -97,28 +97,19 @@ export class DefaultNetworkTransport implements NetworkTransport {
                 } else {
                     throw new Error("Expected an empty or a JSON response");
                 }
+            } else if (
+                contentType &&
+                contentType.startsWith("application/json")
+            ) {
+                throw new MongoDBRealmError(
+                    response.status,
+                    response.statusText,
+                    await response.json(),
+                );
             } else {
-<<<<<<< HEAD
-                // TODO: Check if a message can be extracted from the response
                 throw new Error(
                     `Unexpected status code (${response.status} ${response.statusText})`,
                 );
-=======
-                if (contentType && contentType.startsWith("application/json")) {
-                    // Awaiting the response to ensure we'll throw our own error
-                    const json = await response.json();
-                    throw new MongoDBRealmError(
-                        response.status,
-                        response.statusText,
-                        json
-                    );
-                } else {
-                    // TODO: Check if a message can be extracted from the response
-                    throw new Error(
-                        `Unexpected status code (${response.status} ${response.statusText})`
-                    );
-                }
->>>>>>> 137cd2dc... Making progress on the remote mongodb service
             }
         } catch (err) {
             throw new Error(
