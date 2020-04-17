@@ -3,6 +3,11 @@ import { expect } from "chai";
 import { createService } from "./HTTPService";
 import { MockTransport } from "../test/MockTransport";
 
+const DEFAULT_HEADERS = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+};
+
 describe("HTTP service", () => {
     it("sends a GET request", async () => {
         const transport = new MockTransport([
@@ -29,6 +34,7 @@ describe("HTTP service", () => {
                         },
                     ],
                 },
+                headers: DEFAULT_HEADERS,
             },
         ]);
     });
