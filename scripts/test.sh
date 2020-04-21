@@ -265,7 +265,7 @@ case "$TARGET" in
   ;;
 "eslint-ci")
   [[ $CONFIGURATION == 'Debug' ]] && exit 0
-  npm ci
+  npm ci --ignore-scripts
   ./node_modules/.bin/eslint -f checkstyle . > eslint.xml || true
   ;;
 "license-check")
@@ -279,7 +279,7 @@ case "$TARGET" in
 "react-tests")
   npm run check-environment
   set_nvm_default
-  npm ci
+  npm ci --ignore-scripts
   start_server
 
   pushd tests/react-test-app
@@ -296,7 +296,7 @@ case "$TARGET" in
 "react-example")
   npm run check-environment
   set_nvm_default
-  npm ci
+  npm ci --ignore-scripts
 
   pushd examples/ReactExample
   npm ci
@@ -362,7 +362,8 @@ case "$TARGET" in
       USE_REALM_DEBUG=0
   fi
   npm run check-environment
-  npm ci --build-from-source=realm --realm_enable_sync=${USE_REALM_SYNC} --use_realm_debug=${USE_REALM_DEBUG}
+  npm ci --ignore-scripts
+  npx node-pre-gyp install --build-from-source=realm --realm_enable_sync=${USE_REALM_SYNC} --use_realm_debug=${USE_REALM_DEBUG}
   start_server
 
   # Change to a temp directory.
@@ -376,7 +377,7 @@ case "$TARGET" in
   stop_server
   ;;
 "electron")
-  npm ci
+  npm ci --ignore-scripts
   start_server
 
   pushd "$SRCROOT/tests/electron"
@@ -403,7 +404,8 @@ case "$TARGET" in
   ;;
 "test-runners")
   npm run check-environment
-  npm ci --build-from-source=realm --use_realm_debug=${USE_REALM_DEBUG}
+  npm ci --ignore-scripts
+  npx node-pre-gyp install --build-from-source=realm --use_realm_debug=${USE_REALM_DEBUG}
   npm run test-runners
   ;;
 "all")
